@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,14 +92,14 @@
 <meta property="og:url" content="http://yoursite.com/2018/05/07/frist-try/index.html">
 <meta property="og:site_name" content="Lzywi">
 <meta property="og:description" content="为什么要搭建博客呢？写博客可以增长知识写博客为了装逼">
-<meta property="og:locale" content="zh-hans">
-<meta property="og:image" content="http://yoursite.com/2018/05/07/frist-try/img/hexo.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/07/frist-try/img/next.png">
-<meta property="og:updated_time" content="2018-05-08T10:29:05.789Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://chuantu.biz/t6/306/1525793603x-1404764432.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/306/1525793707x-1566687455.jpg">
+<meta property="og:updated_time" content="2018-05-08T15:35:27.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一次搭建博客">
 <meta name="twitter:description" content="为什么要搭建博客呢？写博客可以增长知识写博客为了装逼">
-<meta name="twitter:image" content="http://yoursite.com/2018/05/07/frist-try/img/hexo.png">
+<meta name="twitter:image" content="http://chuantu.biz/t6/306/1525793603x-1404764432.jpg">
 
 
 
@@ -115,7 +115,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -147,7 +147,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -192,17 +192,27 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-主页">
+        <li class="menu-item menu-item-home">
           <a href="/home/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            主页
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-关于">
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            相册
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
@@ -212,7 +222,7 @@
         </li>
       
         
-        <li class="menu-item menu-item-标签">
+        <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
@@ -222,7 +232,7 @@
         </li>
       
         
-        <li class="menu-item menu-item-归档">
+        <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
@@ -291,9 +301,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T02:39:30+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T02:39:30+00:00">
                 2018-05-07
               </time>
             
@@ -332,24 +342,25 @@
 
       
         <h3 id="为什么要搭建博客呢？"><a href="#为什么要搭建博客呢？" class="headerlink" title="为什么要搭建博客呢？"></a>为什么要搭建博客呢？</h3><p><del>写博客可以增长知识</del><br><del>写博客为了装逼</del><br><a id="more"></a></p>
-<h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>写博客可以记录学习上遇到的问题，记录自己的学习过程，对于非常白的小白来说<del>绝对不是我</del>，自己扒资料扒博客是比较痛苦的，很多基础知识不会的话很容易出一些很难搜索到的问题，就比较痛苦了，建议可以先学习一些预备知识，下面讲一下整个搭博客的过程</p>
-<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p> 对于用云服务器这一类的建议在本地搭建一个虚拟机进行尝试后再对服务器动刀（大神绕过），因为已经做好了，我就拿本地复现一遍，我的服务器是<code>ubuntu 16</code>，本地也用同样的系统搭建，不同的系统命令也不同。<br>我选用的框架是hexo,这个框架速度快、支持markdown、一键部署、有很多插件<del>（还不是因为不会用其他的）</del>，网上也有很多同样的教程，教程千篇一律，bug各种各样，希望这篇博客对你有所帮助</p>
-<h5 id="大概流程就是安装nodejs环境-gt-安装hexo-gt-下载一款好看的主题（可省）-gt-发布你的博客酱酱酱"><a href="#大概流程就是安装nodejs环境-gt-安装hexo-gt-下载一款好看的主题（可省）-gt-发布你的博客酱酱酱" class="headerlink" title="大概流程就是安装nodejs环境--&gt;安装hexo--&gt;下载一款好看的主题（可省）--&gt;发布你的博客酱酱酱"></a>大概流程就是<br><code>安装nodejs环境--&gt;安装hexo--&gt;下载一款好看的主题（可省）--&gt;发布你的博客</code><br>酱酱酱</h5><h4 id="一、nodejs安装教程"><a href="#一、nodejs安装教程" class="headerlink" title="一、nodejs安装教程"></a>一、nodejs安装教程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
+<h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>&emsp;&emsp;写博客可以记录学习上遇到的问题，记录自己的学习过程，对于非常白的小白来说<del>绝对不是我</del>，自己扒资料扒博客是比较痛苦的，很多基础知识不会的话很容易出一些很难搜索到的问题，就比较痛苦了，建议可以先学习一些预备知识，下面讲一下整个搭博客的过程</p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p> &emsp;&emsp;对于用云服务器这一类的建议在本地搭建一个虚拟机进行尝试后再对服务器动刀（大神绕过），因为已经做好了，我就拿本地复现一遍，我的服务器是<code>ubuntu 16</code>，本地也用同样的系统搭建，不同的系统命令也不同。<br>我选用的框架是hexo,这个框架速度快、支持markdown、一键部署、有很多插件<del>（还不是因为不会用其他的）</del>，网上也有很多同样的教程，教程千篇一律，bug各种各样，希望这篇博客对你有所帮助</p>
+<h5 id="大概流程就是"><a href="#大概流程就是" class="headerlink" title="大概流程就是"></a>大概流程就是</h5><p><code>安装nodejs环境--&gt;安装hexo--&gt;下载一款好看的主题（可省）--&gt;发布你的博客</code><br>酱酱酱</p>
+<h4 id="一、nodejs安装教程"><a href="#一、nodejs安装教程" class="headerlink" title="一、nodejs安装教程"></a>一、nodejs安装教程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
 <p>两行代码OK啦，不是ubuntu系统的可以点击<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">这里</a>查看其他命令</p>
 <h4 id="二、hexo安装"><a href="#二、hexo安装" class="headerlink" title="二、hexo安装"></a>二、hexo安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h5 id="坑一apt-get-安装的nodejs是4-2-6，hexo需要6-9-0，爬了好多博客才找到"><a href="#坑一apt-get-安装的nodejs是4-2-6，hexo需要6-9-0，爬了好多博客才找到" class="headerlink" title="坑一apt-get 安装的nodejs是4.2.6，hexo需要6.9.0，爬了好多博客才找到"></a>坑一<br>apt-get 安装的nodejs是4.2.6，hexo需要6.9.0，爬了好多博客才找到</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g n</span><br><span class="line">sudo n 6.9.0</span><br><span class="line">或者 sudo n stable</span><br></pre></td></tr></table></figure>
+<h5 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h5><p>apt-get 安装的nodejs是4.2.6，hexo需要6.9.0，爬了好多博客才找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g n</span><br><span class="line">sudo n 6.9.0</span><br><span class="line">或者 sudo n stable</span><br></pre></td></tr></table></figure></p>
 <p>现在执行刚刚的命令就可以安装hexo了，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure></p>
 <p>可以查看是否正确安装，正确安装会有以下输出提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Linux 4.10.0-28-generic linux x64</span><br><span class="line">http_parser: 2.8.0</span><br><span class="line">node: 10.0.0</span><br><span class="line">v8: 6.6.346.24-node.5</span><br><span class="line">uv: 1.20.2</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">ares: 1.14.0</span><br><span class="line">modules: 64</span><br><span class="line">nghttp2: 1.29.0</span><br><span class="line">napi: 3</span><br><span class="line">openssl: 1.1.0h</span><br><span class="line">icu: 61.1</span><br><span class="line">unicode: 10.0</span><br><span class="line">cldr: 33.0</span><br><span class="line">tz: 2018c</span><br></pre></td></tr></table></figure></p>
 <p>选择一个空的文件夹作为你的站点，在当前路径下初始化你的hexo(报错加sudo试试)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
 <p>这样子网站就初步建好了，网站的目录结构就是下面这样子的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure></p>
-<p><code>_config.yml</code> 文件存放着网站的配置信息，可以在这里配置大部分的参数。<br><code>package.json</code> 文件存放着插件信息，从中可以查看那些插件已经安装。<br><code>scaffolds</code> 是模板文件夹，新建文章时，Hexo 会根据 scaffold 来建立文件，不过这个模板和后面的主题里指的模板不一样。<br><code>source</code> 是存放用户资源的地方的文件夹，除 <code>_posts</code> 文件夹之外，开头命名为 _ (下划线) 的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹（别急，等下会生成的），而其他文件会被拷贝过去。<br><code>themes</code> 主题文件夹，Hexo 会根据主题来生成静态页面，我们以后自己安装的主题也都会放在这个文件夹下面，默认的 <code>landscape</code> 主题已经在里面了。<br>现在我们启动我们的博客<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">简写 hexo s</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;<code>_config.yml</code> 文件存放着网站的配置信息，可以在这里配置大部分的参数。<br><code>package.json</code> 文件存放着插件信息，从中可以查看那些插件已经安装。<br><code>scaffolds</code> 是模板文件夹，新建文章时，Hexo 会根据 scaffold 来建立文件，不过这个模板和后面的主题里指的模板不一样。<br><code>source</code> 是存放用户资源的地方的文件夹，除 <code>_posts</code> 文件夹之外，开头命名为 _ (下划线) 的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹（别急，等下会生成的），而其他文件会被拷贝过去。<br><code>themes</code> 主题文件夹，Hexo 会根据主题来生成静态页面，我们以后自己安装的主题也都会放在这个文件夹下面，默认的 <code>landscape</code> 主题已经在里面了。<br>现在我们启动我们的博客<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">简写 hexo s</span><br></pre></td></tr></table></figure></p>
 <p>提示4000端口被占用的<a href="www.baidu.com">百度</a>下方法</p>
 <h4 id="完工"><a href="#完工" class="headerlink" title="完工"></a>完工</h4><p>不出意外应该都看得到这两条信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
-<p>现在访问我们虚拟机的ip:4000就可以看到我们的博客啦<br><img src="./img/hexo.png" alt="Alt text"><br>再换一个好看点的主题就可以啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
+<p>现在访问我们虚拟机的ip:4000就可以看到我们的博客啦<br><img src="http://chuantu.biz/t6/306/1525793603x-1404764432.jpg" alt="Alt text"><br>再换一个好看点的主题就可以啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
 <p>要在站点目录下这个很重要！<br>要在站点目录下这个很重要！<br>要在站点目录下这个很重要！<br><del>太笨了当初在这卡了久</del>  重要的事情说三遍<br>再在站点文件夹下的配置文件<code>_config.yml</code>更换主题就OK啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure></p>
 <p>往下滚到这个位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: landscape</span><br></pre></td></tr></table></figure></p>
-<p>把landscape换成next就ok啦，最后重启下博客<br><img src="./img/next.png" alt="Alt text"></p>
-<h4 id="完善"><a href="#完善" class="headerlink" title="完善"></a>完善</h4><p>相信很多小伙伴都觉得挺一般的，这个只是雏形，还有更多细节优化美化要去处理，觉得我的博客不错的可以看看这篇博客<br>戳这里–&gt;<a href="https://blog.csdn.net/qq_33699981/article/details/72716951" target="_blank" rel="noopener">here</a></p>
+<p>把landscape换成next就ok啦，最后重启下博客<br><img src="http://chuantu.biz/t6/306/1525793707x-1566687455.jpg" alt="Alt text"></p>
+<h4 id="完善"><a href="#完善" class="headerlink" title="完善"></a>完善</h4><p>&emsp;&emsp;相信很多小伙伴都觉得挺一般的，这个只是雏形，还有更多细节优化美化要去处理，觉得我的博客不错的可以看看这篇博客<br>戳这里–&gt;<a href="https://blog.csdn.net/qq_33699981/article/details/72716951" target="_blank" rel="noopener">here</a></p>
 
       
     </div>
@@ -420,10 +431,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -445,10 +456,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -500,7 +511,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要搭建博客呢？"><span class="nav-number">1.</span> <span class="nav-text">为什么要搭建博客呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大概流程就是安装nodejs环境-gt-安装hexo-gt-下载一款好看的主题（可省）-gt-发布你的博客酱酱酱"><span class="nav-number">1.2.1.</span> <span class="nav-text">大概流程就是安装nodejs环境--&gt;安装hexo--&gt;下载一款好看的主题（可省）--&gt;发布你的博客酱酱酱</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、nodejs安装教程"><span class="nav-number">1.3.</span> <span class="nav-text">一、nodejs安装教程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、hexo安装"><span class="nav-number">1.4.</span> <span class="nav-text">二、hexo安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#坑一apt-get-安装的nodejs是4-2-6，hexo需要6-9-0，爬了好多博客才找到"><span class="nav-number">1.4.1.</span> <span class="nav-text">坑一apt-get 安装的nodejs是4.2.6，hexo需要6.9.0，爬了好多博客才找到</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完工"><span class="nav-number">1.5.</span> <span class="nav-text">完工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完善"><span class="nav-number">1.6.</span> <span class="nav-text">完善</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要搭建博客呢？"><span class="nav-number">1.</span> <span class="nav-text">为什么要搭建博客呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大概流程就是"><span class="nav-number">1.2.1.</span> <span class="nav-text">大概流程就是</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、nodejs安装教程"><span class="nav-number">1.3.</span> <span class="nav-text">一、nodejs安装教程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、hexo安装"><span class="nav-number">1.4.</span> <span class="nav-text">二、hexo安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#坑一"><span class="nav-number">1.4.1.</span> <span class="nav-text">坑一</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完工"><span class="nav-number">1.5.</span> <span class="nav-text">完工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完善"><span class="nav-number">1.6.</span> <span class="nav-text">完善</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -522,7 +533,7 @@
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright" style="text-align: center">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -530,6 +541,8 @@
 
   
 </div>
+
+<div  style="text-align: center">
 <div class="powered-by">
 <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
   本站访客数:<span id="busuanzi_value_site_uv"></span>
@@ -537,7 +550,7 @@
 </div>
 
 
-<!--  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+<!--  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -545,10 +558,15 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 -->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共1.1k字</span>
+</div>
+</div>
 
         
 
