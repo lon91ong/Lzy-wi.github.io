@@ -154,7 +154,7 @@ FragmentBanner.prototype = {
 			var oP = document.createElement('i');
 			this.setCss(oP,{
 				width : 0,
-				backgroundColor : p ? '#1a1a1b' : '#1a1a1b'
+				backgroundColor : p ? '#ffffff' : '#ffffff'
 			});
 			this.elem.progre.appendChild(oP);
 			this.progre.push(oP);
