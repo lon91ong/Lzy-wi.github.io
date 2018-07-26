@@ -85,7 +85,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lets Bake Muffins:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Megrim:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -132,7 +132,7 @@
 <meta property="og:site_name" content="Lzywi&#39;Blog">
 <meta property="og:description" content="哈希长度拓展攻击学习参考资料：哈希长度扩展攻击的简介以及HashPump安装使用方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-21T12:19:16.000Z">
+<meta property="og:updated_time" content="2018-07-25T02:20:49.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RCTF密码题cpushop解题过程">
 <meta name="twitter:description" content="哈希长度拓展攻击学习参考资料：哈希长度扩展攻击的简介以及HashPump安装使用方法">
@@ -234,16 +234,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photos">
-          <a href="/photos/next/index.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
-            
-            相册
           </a>
         </li>
       
@@ -379,12 +369,12 @@
       
         <h3 id="哈希长度拓展攻击学习"><a href="#哈希长度拓展攻击学习" class="headerlink" title="哈希长度拓展攻击学习"></a>哈希长度拓展攻击学习</h3><p>参考资料：<a href="哈希长度扩展攻击的简介以及HashPump安装使用方法">哈希长度扩展攻击的简介以及HashPump安装使用方法</a><br><a id="more"></a></p>
 <h4 id="关于哈希长度拓展"><a href="#关于哈希长度拓展" class="headerlink" title="关于哈希长度拓展"></a>关于哈希长度拓展</h4><p>&emsp;&emsp;一开始我也是没有想法<del>甚至打算爆破的</del>，后来在师姐的指引下看了谋篇博客（见参考资料），就和师姐一起做出来了，写篇博客记录下。题目文件已上传到百度云,链接: <a href="https://pan.baidu.com/s/13d0Re1b_IIez-11dowmvtQ" target="_blank" rel="noopener">https://pan.baidu.com/s/13d0Re1b_IIez-11dowmvtQ</a> 密码: f1t2</p>
-<h5 id="大概解题思路"><a href="#大概解题思路" class="headerlink" title="大概解题思路"></a>大概解题思路</h5><p>&emsp;&emsp;解释一下题目，linux下<code>nc cpushop.2018.teamrois.cn 43000</code>有四个选项，列出菜单，下订单，支付，退出，flag也在菜单里面，然后就是不择手段买到flag<br>&emsp;&emsp;但是我们的钱是<code>money = random.randint(1000, 10000)</code>这么来的flag价格是99999，也就是说正常方法我们是无论如何也买不到flag的,然而它检查price的方法用了for循环。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for k,v in parse_qsl(payment):</span><br><span class="line">    if k == &apos;product&apos;:</span><br><span class="line">        product = v</span><br><span class="line">    elif k == &apos;price&apos;:</span><br><span class="line">        try:</span><br><span class="line">            price = int(v)</span><br><span class="line">        except ValueError:</span><br><span class="line">            print &apos;Invalid Order!&apos;</span><br><span class="line">            return</span><br></pre></td></tr></table></figure></p>
-<p>简而言之就是它会一直检查订单里的价格，比方说，你的订单是长介样子的<code>product=xxx&amp;price=99999&amp;price=1</code>上面代码出来的最终结果是price=1<br>signkey是一个8到32位的str<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signkey = &apos;&apos;.join([random.choice(string.letters+string.digits) for _ in xrange(random.randint(8,32))])</span><br></pre></td></tr></table></figure></p>
-<p>order的格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def order():</span><br><span class="line">    n = input_int(&apos;Product ID: &apos;)</span><br><span class="line">    if n &lt; 0 or n &gt;= len(items):</span><br><span class="line">        print &apos;Invalid ID!&apos;</span><br><span class="line">        return</span><br><span class="line">    payment = &apos;product=%s&amp;price=%d&amp;timestamp=%d&apos; % (items[n][0], items[n][1], time.time()*1000000)</span><br><span class="line">    sign = sha256(signkey+payment).hexdigest()</span><br><span class="line">    payment += &apos;&amp;sign=%s&apos; % sign</span><br><span class="line">    print &apos;Your order:\n%s\n&apos; % payment</span><br></pre></td></tr></table></figure></p>
+<h5 id="大概解题思路"><a href="#大概解题思路" class="headerlink" title="大概解题思路"></a>大概解题思路</h5><p>&emsp;&emsp;解释一下题目，linux下<code>nc cpushop.2018.teamrois.cn 43000</code>有四个选项，列出菜单，下订单，支付，退出，flag也在菜单里面，然后就是不择手段买到flag<br>&emsp;&emsp;但是我们的钱是<code>money = random.randint(1000, 10000)</code>这么来的flag价格是99999，也就是说正常方法我们是无论如何也买不到flag的,然而它检查price的方法用了for循环。。。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> parse_qsl(payment):</span><br><span class="line">    <span class="keyword">if</span> k == <span class="string">'product'</span>:</span><br><span class="line">        product = v</span><br><span class="line">    <span class="keyword">elif</span> k == <span class="string">'price'</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            price = int(v)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'Invalid Order!'</span></span><br><span class="line">            <span class="keyword">return</span></span><br></pre></td></tr></table></figure></p>
+<p>简而言之就是它会一直检查订单里的价格，比方说，你的订单是长介样子的<code>product=xxx&amp;price=99999&amp;price=1</code>上面代码出来的最终结果是price=1<br>signkey是一个8到32位的str<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signkey = <span class="string">''</span>.join([random.choice(string.letters+string.digits) <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(random.randint(<span class="number">8</span>,<span class="number">32</span>))])</span><br></pre></td></tr></table></figure></p>
+<p>order的格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order</span><span class="params">()</span>:</span></span><br><span class="line">    n = input_int(<span class="string">'Product ID: '</span>)</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">0</span> <span class="keyword">or</span> n &gt;= len(items):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Invalid ID!'</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    payment = <span class="string">'product=%s&amp;price=%d&amp;timestamp=%d'</span> % (items[n][<span class="number">0</span>], items[n][<span class="number">1</span>], time.time()*<span class="number">1000000</span>)</span><br><span class="line">    sign = sha256(signkey+payment).hexdigest()</span><br><span class="line">    payment += <span class="string">'&amp;sign=%s'</span> % sign</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Your order:\n%s\n'</span> % payment</span><br></pre></td></tr></table></figure></p>
 <h5 id="长度拓展攻击"><a href="#长度拓展攻击" class="headerlink" title="长度拓展攻击"></a>长度拓展攻击</h5><p>假设<br>密文A：xxxxx<br>明文B：ABCD<br>&emsp;&emsp;你知道(<code>密文A+明文B</code>)的哈希值和B，因为A我们不知道，爆破会比较困难，通过哈希长度拓展攻击可以修改B的内容<br>假设我们的带的订单内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">product=Flag&amp;price=99999&amp;timestamp=1526903707553295&amp;sign=9226bf4f86d5b02042281d87b1b104048c2da41f395350b6f68b05c5addc6fe4</span><br></pre></td></tr></table></figure></p>
 <p>那么<br>明文B：<code>product=Flag&amp;price=99999&amp;timestamp=1526903707553295</code><br>sha256(密文A+明文B)：<code>9226bf4f86d5b02042281d87b1b104048c2da41f395350b6f68b05c5addc6fe4</code><br>如果我们可以把订单的明文添加一个&amp;price=1进去，那么pay的过程它经过for循环后最终价格会变化才能1，那么我们的目的就达到了<br>最终的一键代码如下，需要安装两个库文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pwntools</span><br><span class="line">pip install hashpumpy</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">from hashpumpy import hashpump</span><br><span class="line">import time</span><br><span class="line">nc = remote(&quot;cpushop.2018.teamrois.cn&quot;,43000)</span><br><span class="line">txt = nc.recvuntil(&apos;Command:&apos;)</span><br><span class="line">print txt</span><br><span class="line">nc.send(&apos;2&apos;)</span><br><span class="line">print nc.recvuntil(&apos;ID:&apos;)</span><br><span class="line">nc.send(&apos;9&apos;)</span><br><span class="line">code = nc.recvuntil(&apos;Command:&apos;)</span><br><span class="line">print code</span><br><span class="line">flag = code[13:134]</span><br><span class="line">hexdata = flag[57:]</span><br><span class="line">original = flag[0:51]</span><br><span class="line">add = &apos;&amp;price=1&apos;</span><br><span class="line">dic = []</span><br><span class="line">print original</span><br><span class="line">for i in range(8,33):</span><br><span class="line">    a,b = hashpump(hexdata,original,add,i)</span><br><span class="line">    order = b + &apos;&amp;sign=&apos; + a</span><br><span class="line">    nc.send(&apos;3&apos;)</span><br><span class="line">    print nc.recvuntil(&apos;order:&apos;)</span><br><span class="line">    print i</span><br><span class="line">    print order</span><br><span class="line">    nc.send(order)</span><br><span class="line">    print nc.recvuntil(&apos;Command:&apos;)</span><br><span class="line">nc.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> hashpumpy <span class="keyword">import</span> hashpump</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">nc = remote(<span class="string">"cpushop.2018.teamrois.cn"</span>,<span class="number">43000</span>)</span><br><span class="line">txt = nc.recvuntil(<span class="string">'Command:'</span>)</span><br><span class="line"><span class="keyword">print</span> txt</span><br><span class="line">nc.send(<span class="string">'2'</span>)</span><br><span class="line"><span class="keyword">print</span> nc.recvuntil(<span class="string">'ID:'</span>)</span><br><span class="line">nc.send(<span class="string">'9'</span>)</span><br><span class="line">code = nc.recvuntil(<span class="string">'Command:'</span>)</span><br><span class="line"><span class="keyword">print</span> code</span><br><span class="line">flag = code[<span class="number">13</span>:<span class="number">134</span>]</span><br><span class="line">hexdata = flag[<span class="number">57</span>:]</span><br><span class="line">original = flag[<span class="number">0</span>:<span class="number">51</span>]</span><br><span class="line">add = <span class="string">'&amp;price=1'</span></span><br><span class="line">dic = []</span><br><span class="line"><span class="keyword">print</span> original</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>,<span class="number">33</span>):</span><br><span class="line">    a,b = hashpump(hexdata,original,add,i)</span><br><span class="line">    order = b + <span class="string">'&amp;sign='</span> + a</span><br><span class="line">    nc.send(<span class="string">'3'</span>)</span><br><span class="line">    <span class="keyword">print</span> nc.recvuntil(<span class="string">'order:'</span>)</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line">    <span class="keyword">print</span> order</span><br><span class="line">    nc.send(order)</span><br><span class="line">    <span class="keyword">print</span> nc.recvuntil(<span class="string">'Command:'</span>)</span><br><span class="line">nc.interactive()</span><br></pre></td></tr></table></figure>
 <p>tip:<code>hexdata</code>是A+B的哈希，<code>original</code>是B，<code>add</code>是要加的内容，<code>i</code>是A的长度。<br><strong>爆破A很困难，爆破A的长度就很简单了</strong><br>最后构造出来的订单式长这样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">product=Flag&amp;price=99999&amp;timestamp=1526818398651000\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x88&amp;price=1&amp;sign=b842b4baa0d4405697b740a871ae60dd64617cdfa1846132373e1b3a371c0db3</span><br></pre></td></tr></table></figure></p>
 
       
@@ -523,7 +513,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -536,7 +526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -619,7 +609,7 @@
 <div  style="text-align: center">
 <div class="powered-by">
 <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
 </span>
 </div>
 
@@ -638,7 +628,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.5k字</span>
+  <span class="post-count">博客全站共11.5k字</span>
 </div>
 </div>
 
