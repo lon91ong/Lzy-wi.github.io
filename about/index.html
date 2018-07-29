@@ -129,7 +129,7 @@
 <meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="Lzywi&#39;Blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T10:52:26.000Z">
+<meta property="og:updated_time" content="2018-07-29T06:15:10.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
 
@@ -319,6 +319,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -607,6 +614,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: '',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'f505e0931d7b3481f41ba49d0a62c32ed958ab03',
+            
+                client_id: 'a6008e5dc6be6020bf5f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
